@@ -19,14 +19,18 @@ import (
 
 // Example from https://www.youtube.com/watch?v=XuFq7NW3ii4
 
-type photo struct {
+var photos = []struct {
 	title string
 	url   string
-}
-
-func newPhoto(title string, url string) photo {
-	p := photo{title: title, url: url}
-	return p
+}{
+	{"Sleepytaro with friends", "https://github.com/akam/hamtaro/assets/19315796/7098538e-09e8-49fe-b68f-92dd200f9e68"},
+	{"Sleepy boxtaro", "https://github.com/akam/hamtaro/assets/19315796/50741eac-8dfb-4ff3-a16e-21e2ffb0ca6b"},
+	{"Close up taro", "https://github.com/akam/hamtaro/assets/19315796/c054ab54-a5bf-437c-8d32-cffa2323e517"},
+	{"Partytaro", "https://github.com/akam/hamtaro/assets/19315796/ab574974-2a9e-4927-ba0b-5e823dddda47"},
+	{"Cartaro", "https://github.com/akam/hamtaro/assets/19315796/3cdd5a82-c78e-47fb-b77f-76bda1cf8c7f"},
+	{"Stalk taro", "https://github.com/akam/hamtaro/assets/19315796/6611a7f4-6db4-4e53-a57f-c50edef63957"},
+	{"Chickentaro", "https://github.com/akam/hamtaro/assets/19315796/edaa2e3a-362b-4b9b-88b8-85471993f7db"},
+	{"Cooltaro", "https://github.com/akam/hamtaro/assets/19315796/ef2c0e7b-1049-475b-af09-7dcadb701ed6"},
 }
 
 func main() {
@@ -96,18 +100,7 @@ func main() {
 			}
 
 		case "randtaro":
-			var hamtaros []photo
-			hamtaros = append(hamtaros,
-				newPhoto("Sleepytaro with friends", "https://github.com/akam/hamtaro/assets/19315796/7098538e-09e8-49fe-b68f-92dd200f9e68"),
-				newPhoto("Sleepy boxtaro", "https://github.com/akam/hamtaro/assets/19315796/50741eac-8dfb-4ff3-a16e-21e2ffb0ca6b"),
-				newPhoto("Close up taro", "https://github.com/akam/hamtaro/assets/19315796/c054ab54-a5bf-437c-8d32-cffa2323e517"),
-				newPhoto("Partytaro", "https://github.com/akam/hamtaro/assets/19315796/ab574974-2a9e-4927-ba0b-5e823dddda47"),
-				newPhoto("Cartaro", "https://github.com/akam/hamtaro/assets/19315796/3cdd5a82-c78e-47fb-b77f-76bda1cf8c7f"),
-				newPhoto("Stalk taro", "https://github.com/akam/hamtaro/assets/19315796/6611a7f4-6db4-4e53-a57f-c50edef63957"),
-				newPhoto("Chickentaro", "https://github.com/akam/hamtaro/assets/19315796/edaa2e3a-362b-4b9b-88b8-85471993f7db"),
-				newPhoto("Cooltaro", "https://github.com/akam/hamtaro/assets/19315796/ef2c0e7b-1049-475b-af09-7dcadb701ed6"),
-			)
-			var hamtaro = hamtaros[rand.Intn(len(hamtaros))]
+			var hamtaro = photos[rand.Intn(len(photos))]
 			err := s.InteractionRespond(
 				i.Interaction,
 				&discordgo.InteractionResponse{
